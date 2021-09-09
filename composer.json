@@ -1,0 +1,17 @@
+{
+	"name": "canadasatellite/amelia"
+	,"version": "0.0.1"
+	,"description": "An integration between amelia.ai and canadasatellite.ca (Magento 2)"
+	,"type": "magento2-module"
+	,"homepage": "https://github.com/canadasatellite-ca/amelia"
+	,"license": "MIT"
+	,"authors": [{
+		"name": "Dmitry Fedyuk"
+		,"email": "admin@mage2.pro"
+		,"homepage": "https://mage2.pro/users/dmitry_fedyuk"
+		,"role": "Developer"
+	}]
+	,"require": {"mage2pro/core": ">=7.7.0"}
+	,"autoload": {"files": ["registration.php"], "psr-4": {"CanadaSatellite\\Amelia\\": ""}}
+	,"keywords": ["Magento 2"]
+}
