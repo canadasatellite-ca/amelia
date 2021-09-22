@@ -1,10 +1,16 @@
-// 2021-08-23
+// 2021-09-17
 div.cs-amelia {
 	background: yellow;
-	height: 200px;
-	right: 0;
-	position: fixed;
 	bottom: 0;
-	width: 200px;
+	max-height: ~'calc(100% - 82px)';
+	position: fixed;
+	right: 0;
+	width: 350px;
 	z-index: 100;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+	> .header {height: 40px;}
+	> .body {height: ~'calc(100% - 40px)';}
 }
