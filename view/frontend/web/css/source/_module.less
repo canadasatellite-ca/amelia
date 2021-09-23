@@ -1,5 +1,31 @@
 // 2021-09-17
-div.cs-amelia {
+button.cs-amelia-closed {
+	bottom: 40px;
+	color: inherit;
+	display: block;
+	flex-shrink: 0;
+	position: fixed;
+	right: 55px;
+	transition: all 0.25s ease 0s;
+	z-index: 100;
+    background: none;
+    border: none;
+    cursor: pointer;
+    height: 64px;
+    outline: none;
+    padding: 0px;
+    transform: scale(0.875);
+    width: 64px;
+	> div {
+		background-image: url(https://cdn-app.sberdevices.ru/misc/0.0.0/assistant-web-sdk/kpss/animations/idle/sber.png);
+		background-position: -128px -896px;
+		height: 128px;
+		pointer-events: none;
+		transform: translate(-25%, -25%);
+		width: 128px;
+	}
+}
+div.cs-amelia-open {
 	bottom: 0;
 	max-height: ~'calc(100% - 82px)';
 	position: fixed;
