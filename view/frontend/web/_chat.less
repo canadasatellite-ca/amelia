@@ -11,6 +11,16 @@ div.cs-amelia {
     display: flex;
     flex-direction: column;
     height: 100%;
-	> .header {height: 40px;}
-	> .body {height: ~'calc(100% - 40px)';}
+	> .body {
+		height: 100%;
+		&:after {
+			position: absolute;
+			top: 0;
+			right: 0;
+			content: '✕';
+			display: block;
+			font-size: 21px;
+			cursor: pointer;
+		}
+	}
 }

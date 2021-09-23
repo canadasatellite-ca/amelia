@@ -26,8 +26,7 @@ class Block extends _P {
 	 * @return string
 	 */
 	final protected function _toHtml() {return df_tag('div', 'cs-amelia', df_cc_n(
-		df_tag('div', 'header', 'TEST')
-		,df_tag('div', 'body',
+		df_tag('div', 'body',
 			df_tag('iframe', [
 				'height' => '100%'
 				,'src' => 'https://canadasatellite.dev.amelia.com/Amelia/ui/cansatdev/?embed=iframe&domainCode=casatdev'
