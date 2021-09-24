@@ -33,6 +33,30 @@
 					<backend_model>Df\Config\Backend\Checkbox</backend_model>
 					<comment><![CDATA[Enable the <a href='https://amelia.ai' target='_blank'>Amelia</a> chatbot?]]></comment>
 				</field>
+				<field
+					id='url'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='2'
+					translate='label'
+					type='text'
+				>
+					<label>IFRAME URL</label>
+					<comment><![CDATA[<a href='https://docs.ipsoft.com/pages/viewpage.action?spaceKey=AmeliaDocsV4&title=Create+a+Custom+Chat+Overlay#CreateaCustomChatOverlay-ConfiguretheiframeURL' target='_blank'>Where to find it?</a>]]></comment>
+					<depends><field id='enable'>1</field></depends>
+					<validate>required-entry</validate>
+				</field>
+				<field
+					id='sticky'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='1'
+					translate='label'
+					type='Df\Framework\Form\Element\Checkbox'
+				>
+					<backend_model>Df\Config\Backend\Checkbox</backend_model>
+					<comment>It is shown in the bottom-right corner of the screen.</comment>
+					<depends><field id='enable'>1</field></depends>
+					<label>Show the sticky icon?</label>
+				</field>
 			</group>
 		</section>
 	</system>
