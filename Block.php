@@ -1,5 +1,6 @@
 <?php
 namespace CanadaSatellite\Amelia;
+use CanadaSatellite\Amelia\Settings as S;
 use Magento\Framework\View\Element\AbstractBlock as _P;
 # 2021-09-17
 /** @final Unable to use the PHP «final» keyword here because of the M2 code generation. */
@@ -25,7 +26,7 @@ class Block extends _P {
 	 * https://github.com/magento/magento2/blob/2.2.0/lib/internal/Magento/Framework/View/Element/AbstractBlock.php#L643-L689
 	 * @return string
 	 */
-	final protected function _toHtml() {return df_js($this, null, [
+	final protected function _toHtml() {return !S::s()->enable() ? null : df_js($this, null, [
 		'url' => 'https://canadasatellite.dev.amelia.com/Amelia/ui/cansatdev/?embed=iframe&domainCode=casatdev'
 	]);}
 }

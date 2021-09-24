@@ -1,0 +1,39 @@
+<?xml version='1.0'?>
+<config
+	xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+	xsi:noNamespaceSchemaLocation='urn:magento:module:Df_Config:etc/system_file.xsd'
+>
+<!-- 2021-09-24 -->
+	<system>
+		<section
+			id='cs_amelia'
+			showInDefault='1' showInWebsite='1' showInStore='1'
+			translate='label'
+		>
+			<class>separator-top</class>
+			<label>Amelia</label>
+			<resource>CanadaSatellite_Amelia::config</resource> <!-- 2015-10-05 https://mage2.pro/t/114 -->
+			<tab>canada_satellite</tab>
+			<group
+				id='general'
+				showInDefault='1' showInStore='1' showInWebsite='1'
+				sortOrder='1'
+				translate='label'
+			>
+				<label>General</label>
+				<frontend_model>Df\Config\Fieldset</frontend_model>
+				<field
+					id='enable'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='1'
+					translate='label'
+					type='Df\Framework\Form\Element\Checkbox'
+				>
+					<label>Enable?</label>
+					<backend_model>Df\Config\Backend\Checkbox</backend_model>
+					<comment><![CDATA[Enable the <a href='https://amelia.ai' target='_blank'>Amelia</a> chatbot?]]></comment>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>
