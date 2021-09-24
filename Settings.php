@@ -8,14 +8,14 @@ final class Settings extends \Df\Config\Settings {
 	 * @used-by \CanadaSatellite\Amelia\Block::_toHtml()
 	 * @return bool
 	 */
-	function url() {return $this->v();}
+	function sticky() {return $this->b();}
 
 	/**
 	 * 2021-09-25
 	 * @used-by \CanadaSatellite\Amelia\Block::_toHtml()
 	 * @return bool
 	 */
-	function sticky() {return $this->b();}
+	function url() {return $this->v();}
 
 	/**
 	 * 2021-09-24
