@@ -6,9 +6,22 @@ define(['jquery'], function($) {return (
 	 * @returns void
 	 */
 	function(c) {
-		(function() {
-			var $globe = $('<div>');
-			var $b = $('<button>').addClass('cs-amelia-closed').append($globe);
+		var $button = $('<button>').addClass('cs-amelia-closed');
+		// 2021-09-23
+		// Creating the IFRAME on the server side (in the \CanadaSatellite\Amelia\Block::_toHtml() method)
+		// breaks the Magento's JavaScripts for an unknown reason, so I create the IFRAME on the client's side.
+		var $chat = (function() {
+			var $r = $('<div>').addClass('cs-amelia-open df-hidden');
+			var $close = $('<div>').addClass('cs-close').text('✕').click(toggle);
+			$r
+				.append($close)
+				.append($('<iframe>').attr({height: '100%', src: c.url, width: '100%'}))
+			;
+			$('body').append($r);
+			return $r;
+		})();
+		var $globe = $('<div>');
+		var animate = function() {
 			var positions = [
 				[0, 0], [-128, 0], [0, -128], [-128, -128], [-256, 0], [-256, -128], [0, -256], [-128, -256]
 				,[-256, -256], [-384, 0], [-384, -128], [-384, -256], [0, -384], [-128, -384], [-256, -384], [-384, -384]
@@ -23,19 +36,27 @@ define(['jquery'], function($) {return (
 				,[-768, -1024], [-896, -1024], [-1024, -1024], [-1152, 0], [-1152, -128], [-1152, -256], [-1152, -384]
 				, [-1152, -512], [-1152, -640], [-1152, -768], [-1152, -896], [-1152, -1024]
 			];
-			$('body').append($b);
-		})();
-		(function() {
-			// 2021-09-23
-			// Creating the IFRAME on the server side (in the \CanadaSatellite\Amelia\Block::_toHtml() method)
-			// breaks the Magento's JavaScripts for an unknown reason, so I create the IFRAME on the client's side.
-			var $b = $('<div>').addClass('cs-amelia-open df-hidden');
-			var $close = $('<div>').addClass('cs-close').text('✕').click(function() {$b.hide();});
-			$b
-				.append($close)
-				.append($('<iframe>').attr({height: '100%', src: c.url, width: '100%'}))
-			;
-			$('body').append($b);
-		})();
+			var i = 0;
+			var globe = $globe.get(0);
+			return setInterval(function() {
+				var p = positions[i];
+				globe.style.backgroundPosition = p[0] + 'px ' + p[1] + 'px';
+				i = ++i % 90;
+			}, 1000 / 45);
+		};
+		var interval;
+		var toggle = function() {
+			$button.add($chat).toggleClass('df-hidden');
+			if ($chat.hasClass('df-hidden')) {
+				interval = animate();
+			}
+			else {
+				clearInterval(interval)
+			}
+		};
+		$button.append($globe);
+		$('body').append($button);
+		$button.click(toggle);
+		interval = animate();
 	});
 });
