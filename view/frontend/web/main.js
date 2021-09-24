@@ -7,12 +7,12 @@ define(['jquery'], function($) {return (
 	 */
 	function(c) {
 		var $button = $('<button>').addClass('cs-amelia-closed');
+		var $close = $('<div>').addClass('cs-close').text('✕');
 		// 2021-09-23
 		// Creating the IFRAME on the server side (in the \CanadaSatellite\Amelia\Block::_toHtml() method)
 		// breaks the Magento's JavaScripts for an unknown reason, so I create the IFRAME on the client's side.
 		var $chat = (function() {
 			var $r = $('<div>').addClass('cs-amelia-open df-hidden');
-			var $close = $('<div>').addClass('cs-close').text('✕').click(toggle);
 			$r
 				.append($close)
 				.append($('<iframe>').attr({height: '100%', src: c.url, width: '100%'}))
@@ -56,7 +56,7 @@ define(['jquery'], function($) {return (
 		};
 		$button.append($globe);
 		$('body').append($button);
-		$button.click(toggle);
+		$button.add($close).click(toggle);
 		interval = animate();
 	});
 });
