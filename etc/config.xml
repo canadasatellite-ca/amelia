@@ -6,6 +6,7 @@
     <default>
 		<cs_amelia>
 			<general>
+				<sticky>true</sticky>
 				<url><![CDATA[https://canadasatellite.dev.amelia.com/Amelia/ui/cansatdev/?embed=iframe&domainCode=casatdev]]></url>
 			</general>
 		</cs_amelia>
