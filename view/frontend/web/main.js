@@ -9,18 +9,18 @@ define(['jquery'], function($) {return (
 	function(c) {
 		const $body = $('body');
 		const [evClose, evOpen] = ['cs.amelia.close', 'cs.amelia.open'];
-		const trigger = function(e) {$(window).trigger(e);};
-		$body.on('click', '.cs-amelia-link', function(e) {
+		const trigger = e => $(window).trigger(e);
+		$body.on('click', '.cs-amelia-link', e => {
 			e.preventDefault();
 			trigger(evOpen);
 		});
 		// 2021-09-23
 		// Creating the IFRAME on the server side (in the \CanadaSatellite\Amelia\Block::_toHtml() method)
 		// breaks the Magento's JavaScripts for an unknown reason, so I create the IFRAME on the client's side.
-		(function() {
-			var $chat = $('<div>').addClass('cs-amelia-open df-hidden');
+		(() => {
+			const $chat = $('<div>').addClass('cs-amelia-open df-hidden');
 			$chat
-				.append($('<div>').addClass('cs-close').text('✕').click(function() {trigger(evClose);}))
+				.append($('<div>').addClass('cs-close').text('✕').click(() => trigger(evClose)))
 				.append($('<iframe>').attr({height: '100%', src: c.url, width: '100%'}))
 			;
 			$body.append($chat);
