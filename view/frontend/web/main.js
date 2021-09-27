@@ -7,10 +7,9 @@ define(['jquery'], function($) {return (
 	 * @returns void
 	 */
 	function(c) {
-		var $body = $('body');
-		var evOpen = 'cs.amelia.open';
-		var evClose = 'cs.amelia.close';
-		var trigger = function(e) {$(window).trigger(e);};
+		const $body = $('body');
+		const [evClose, evOpen] = ['cs.amelia.close', 'cs.amelia.open'];
+		const trigger = function(e) {$(window).trigger(e);};
 		$body.on('click', '.cs-amelia-link', function(e) {
 			e.preventDefault();
 			trigger(evOpen);
