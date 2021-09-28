@@ -10,10 +10,7 @@ define(['jquery'], function($) {return (
 		const $body = $('body');
 		const [evClose, evOpen] = ['cs.amelia.close', 'cs.amelia.open'];
 		const trigger = e => $(window).trigger(e);
-		$body.on('click', '.cs-amelia-link', e => {
-			e.preventDefault();
-			trigger(evOpen);
-		});
+		$body.on('click', '.cs-amelia-link', e => {e.preventDefault(); trigger(evOpen);});
 		// 2021-09-23
 		// Creating the IFRAME on the server side (in the \CanadaSatellite\Amelia\Block::_toHtml() method)
 		// breaks the Magento's JavaScripts for an unknown reason, so I create the IFRAME on the client's side.
@@ -24,16 +21,16 @@ define(['jquery'], function($) {return (
 				.append($('<iframe>').attr({height: '100%', src: c.url, width: '100%'}))
 			;
 			$body.append($chat);
-			$(window).on(evClose, function() {$chat.addClass('df-hidden');});
-			$(window).on(evOpen, function() {$chat.removeClass('df-hidden');});
+			$(window).on(evClose, () => $chat.addClass('df-hidden'));
+			$(window).on(evOpen, () => $chat.removeClass('df-hidden'));
 		})();
 		if (c.sticky) {
-			var $button = $('<button>').addClass('cs-amelia-closed').click(function() {trigger(evOpen);});
-			var $globe = $('<div>');
+			const $button = $('<button>').addClass('cs-amelia-closed').click(() => trigger(evOpen));
+			const $globe = $('<div>');
 			$button.append($globe);
 			$body.append($button);
-			var animate = function() {
-				var positions = [
+			const animate = () => {
+				const positions = [
 					[0, 0], [-128, 0], [0, -128], [-128, -128], [-256, 0], [-256, -128], [0, -256], [-128, -256]
 					,[-256, -256], [-384, 0], [-384, -128], [-384, -256], [0, -384], [-128, -384], [-256, -384], [-384, -384]
 					,[-512, 0], [-512, -128], [-512, -256], [-512, -384], [0, -512], [-128, -512], [-256, -512], [-384, -512]
@@ -45,25 +42,19 @@ define(['jquery'], function($) {return (
 					,[-1024, 0], [-1024, -128], [-1024, -256], [-1024, -384], [-1024, -512], [-1024, -640], [-1024, -768]
 					,[-1024, -896], [0, -1024], [-128, -1024], [-256, -1024], [-384, -1024], [-512, -1024], [-640, -1024]
 					,[-768, -1024], [-896, -1024], [-1024, -1024], [-1152, 0], [-1152, -128], [-1152, -256], [-1152, -384]
-					, [-1152, -512], [-1152, -640], [-1152, -768], [-1152, -896], [-1152, -1024]
+					,[-1152, -512], [-1152, -640], [-1152, -768], [-1152, -896], [-1152, -1024]
 				];
-				var i = 0;
-				var globe = $globe.get(0);
-				return setInterval(function() {
-					var p = positions[i];
+				const globe = $globe.get(0);
+				let i = 0;
+				return setInterval(() => {
+					const p = positions[i];
 					globe.style.backgroundPosition = p[0] + 'px ' + p[1] + 'px';
 					i = ++i % 90;
 				}, 1000 / 45);
 			};
-			var interval;
-			$(window).on(evClose, function() {
-				$button.removeClass('df-hidden');
-				interval = animate();
-			});
-			$(window).on(evOpen, function() {
-				$button.addClass('df-hidden');
-				clearInterval(interval);
-			});
+			let interval;
+			$(window).on(evClose, () => {$button.removeClass('df-hidden'); interval = animate();});
+			$(window).on(evOpen, () => {$button.addClass('df-hidden'); clearInterval(interval);});
 			interval = animate();
 		}
 	});
